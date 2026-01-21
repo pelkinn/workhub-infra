@@ -13,9 +13,15 @@ services:
     restart: unless-stopped
 
   backend:
-    image: hashicorp/http-echo
+    image: ghcr.io/pelkinn/workhub-backend:latest
     container_name: workhub-backend
-    command: [ "-listen=:3000", "-text=backend ok" ]
+    env_file:
+      - /opt/workhub/env/.env
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    depends_on:
+      - postgres
+      - redis
     networks:
       - workhub
     restart: unless-stopped
