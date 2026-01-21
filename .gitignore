@@ -1,0 +1,53 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Secrets and credentials
+*.pem
+*.key
+*.crt
+*.p12
+secrets/
+credentials/
+
+# Logs
+logs/
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# Backup files
+*.bak
+*.backup
+backups/
+
+# Data volumes
+data/
+volumes/
+
+# SSL certificates (local)
+ssl/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Terraform (if used later)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+
+# Ansible (if used later)
+*.retry
+
