@@ -1,2 +1,16 @@
-WorkHub инфраструктура для продакшн‑развёртывания: Docker Compose со связкой PostgreSQL, Redis, backend‑сервиса и Nginx.
-Конфигурации и переменные окружения вынесены в `nginx/conf.d` и `/opt/workhub/env/.env`.
+WorkHub инфраструктура для продакшн‑развёртывания: Docker Compose со связкой PostgreSQL, Redis и backend‑сервиса.
+Переменные окружения вынесены в `/opt/workhub/env/.env`.
+
+## Зависимости
+
+Требуется запущенный `server-infra` (создаёт сеть `proxy`).
+
+## Запуск
+
+```bash
+# Сначала server-infra
+cd /opt/server-infra && docker compose up -d
+
+# Затем workhub
+cd /opt/workhub/infra && docker compose -f docker-compose.prod.yml up -d
+```

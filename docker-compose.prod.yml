@@ -26,6 +26,7 @@ services:
       - redis
     networks:
       - workhub
+      - proxy
     restart: unless-stopped
 
   redis:
@@ -37,20 +38,8 @@ services:
       - workhub
     restart: unless-stopped
 
-  nginx:
-    image: nginx:1.27
-    container_name: workhub-nginx
-    ports:
-      - "80:80"
-    volumes:
-      - /opt/workhub/infra/nginx/conf.d:/etc/nginx/conf.d:ro
-      - /opt/workhub/frontend:/usr/share/nginx/html:ro
-    depends_on:
-      - backend
-    networks:
-      - workhub
-    restart: unless-stopped
-
 networks:
   workhub:
     name: workhub
+  proxy:
+    external: true
